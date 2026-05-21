@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion - Spring Security Demo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .login-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 380px;
+        }
+        .login-card h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+        }
+        .login-card p.subtitle {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #185FA5;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 11px;
+            background: #185FA5;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.2s;
+        }
+        button[type="submit"]:hover {
+            background: #0C447C;
+        }
+        .alert-error {
+            background: #FCEBEB;
+            border: 1px solid #F09595;
+            color: #A32D2D;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 1rem;
+        }
+        .alert-success {
+            background: #EAF3DE;
+            border: 1px solid #97C459;
+            color: #3B6D11;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 1rem;
+        }
+        .hints {
+            margin-top: 1.5rem;
+            background: #E6F1FB;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #185FA5;
+        }
+        .hints p { margin-bottom: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <h2>Authentification</h2>
+    <p class="subtitle">TP9 — Spring Security Demo</p>
+
+    <!-- Message d'erreur -->
+    <div th:if="${param.error}" class="alert-error">
+        Identifiants incorrects. Veuillez réessayer.
+    </div>
+
+    <!-- Message de déconnexion -->
+    <div th:if="${param.logout}" class="alert-success">
+        Vous avez été déconnecté avec succès.
+    </div>
+
+    <form th:action="@{/login}" method="post">
+
+        <div class="form-group">
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text"
+                   id="username"
+                   name="username"
+                   placeholder="admin ou user"
+                   autofocus />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   placeholder="••••••••" />
+        </div>
+
+        <button type="submit">Se connecter</button>
+    </form>
+
+    <div class="hints">
+        <p><strong>Comptes de test :</strong></p>
+        <p>user / 1111 → accès espace utilisateur</p>
+        <p>admin / 1234 → accès complet</p>
+    </div>
+</div>
+
+</body>
+</html>
