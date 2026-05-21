@@ -12,7 +12,7 @@ avec Spring Security, gestion des r√¥les et formulaire de connexion personnalis√
 ```bash
 mvn spring-boot:run
 ```
-Puis ouvrir : http://localhost:8080
+Puis ouvrir : http://localhost:8081
 
 ## Comptes de test
 
